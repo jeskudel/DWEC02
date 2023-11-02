@@ -278,3 +278,59 @@ const usuarioCompleto = {
     asignaturas: ["DWEC", "DWES", "DEAW", "DIW"]
 }
 ```
+
+### Copia y referencia a `object`
+
+En Javascript, así como en muchos otros lenguajes, necesitaremos en ocasiones copiar o clonar elementos de nuestro código, de forma que podamos cambiar uno y dejar intacto el original. Para ello, Javascript (al igual que en otros lenguajes) tiene dos mecanismos para copiar elementos:
+
+* Copia por **valor** (se duplica el contenido)
+* Copia por **referencia** (hace referencia a donde esta el contenido)
+
+El primero de ellos, la copia por *valor*, se realiza con los tipos de datos más básicos (los tipos de datos primitivos), es decir:`string`, `number`, `boolean`, etc. Esto ocurre así porque son estructuras simples y rápidas de copiar.
+
+La copia por *valor* significa que simplemente se crea una nueva variable o constante y se asigna el mismo valor que tiene la variable original. Lo que a efectos prácticos cualquiera imaginaría como una copia:
+
+```js
+let message = "Hello!";
+let phrase = message;
+```
+
+<p align="center"> 
+<img src="./img/copia_valor.png" width="50%" height="50%" style="display: block; margin: 0 auto" />
+</p>
+
+El segundo mecanismo es la copia por *referencia*, y es un poco más complejo. En Javascript, como en otros lenguajes, al almacenar la información en una variable, esta se guarda en una dirección de memoria.
+
+Con estructuras de datos más complejas como `array`, `object` u otros, esta información no se copia por valor, puesto que podríamos tener estructuras muy complejas donde pueden haber muchos niveles de profundidad (array que contiene arrays, que a su vez cada uno de ellos contienen arrays y a su vez cada uno de ellos contienen arrays...).
+
+Para simplificar el proceso, lo que se hace con estos tipos de datos más complejos, es que la copia será una referencia al elemento original, algo que es mucho más práctico y rápido, pero con lo que hay que tener mucho cuidado.
+
+```js
+let user = { name: "John" };
+let admin = user; // copia la referencia
+```
+
+<p align="center"> 
+<img src="./img/copia_referencia.png" width="50%" height="50%" style="display: block; margin: 0 auto" />
+</p>
+
+Dos objetos son iguales solamente si ellos son el mismo objeto.
+
+Por ejemplo, aquí a y b tienen referencias al mismo objeto, por lo tanto son iguales.
+
+```js
+let a = {};
+let b = a; // copia la referencia
+
+alert( a == b ); // true, verdadero. Ambas variables hacen referencia al mismo objeto
+alert( a === b ); // true
+```
+
+Y aquí dos objetos independientes no son iguales, aunque se vean iguales (ambos están vacíos).
+
+```js
+let a = {};
+let b = {}; // dos objetos independientes
+
+alert( a == b ); // false
+```
